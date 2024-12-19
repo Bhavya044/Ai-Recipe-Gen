@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./IngredientInput.css"
 
 const IngredientInput = ({ ingredients, setIngredients, handleGenerate }) => {
   const [input, setInput] = useState('');
@@ -53,47 +54,50 @@ const IngredientInput = ({ ingredients, setIngredients, handleGenerate }) => {
 
   return (
     <div className="ingredient-input modern-card">
-      <h3 className="input-title">Add Ingredients</h3>
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Type an ingredient"
-          value={input}
-          onChange={handleInputChange}
-          onKeyPress={handleKeyPress}
-          list="ingredient-suggestions"
-          className="ingredient-input-field"
-        />
-        <button onClick={() => handleAddIngredient(input)} className="add-button">
-          Add
-        </button>
-      </div>
-
-      {/* Loading indicator */}
-      {loading && <div className="loading-spinner">Loading...</div>}
-
-      {/* Datalist for autocomplete */}
-      <datalist id="ingredient-suggestions">
-        {suggestions.map((ingredient, index) => (
-          <option key={index} value={ingredient} />
-        ))}
-      </datalist>
-
-      <div className="ingredient-list">
-        {ingredients?.map((ingredient, index) => (
-          <div key={index} className="ingredient-tag">
-            <div>{ingredient}</div>
-            <button onClick={() => removeIngredient(index)} className="remove-button">
-              &times;
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <button onClick={handleGenerate} className="generate-button">
-        Generate Recipe
-      </button>
+    <h3 className="input-title">Add Ingredients</h3>
+    <div className="input-container">
+      <input
+        type="text"
+        placeholder="Type an ingredient"
+        value={input}
+        onChange={handleInputChange}
+        onKeyPress={handleKeyPress}
+        list="ingredient-suggestions"
+        className="ingredient-input-field"
+      />
+    {loading ?<span class="loader"></span>: <button onClick={() => handleAddIngredient(input)} className="add-button">
+        Add
+      </button>}
     </div>
+  
+   
+  
+    {suggestions.length > 0 && (
+      <ul className="suggestions-list">
+        {suggestions.map((ingredient, index) => (
+          <li key={index} onClick={() => handleAddIngredient(ingredient)} className="suggestion-item">
+            {ingredient}
+          </li>
+        ))}
+      </ul>
+    )}
+  
+    <div className="ingredient-list">
+      {ingredients?.map((ingredient, index) => (
+        <div key={index} className="ingredient-tag">
+          <div>{ingredient}</div>
+          <button onClick={() => removeIngredient(index)} className="remove-button">
+            &times;
+          </button>
+        </div>
+      ))}
+    </div>
+  
+    <button onClick={handleGenerate} className="generate-button">
+      Generate Recipe
+    </button>
+  </div>
+  
   );
 };
 
