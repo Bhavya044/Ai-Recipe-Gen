@@ -1,0 +1,180 @@
+/* General Recipe Output Styles */
+.recipe-output {
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  max-width: 850px;
+  margin: 30px auto;
+  font-family: "Roboto", sans-serif;
+  transition: box-shadow 0.3s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Card hover effect */
+.recipe-output:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Title */
+.recipe-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: slideIn 0.8s ease-out;
+}
+
+/* Slide-in animation for the title */
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Recipe Meta Info Section */
+.recipe-meta {
+  margin: 20px 0;
+  color: #34495e;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.recipe-meta .meta-item {
+  margin: 10px 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 1s ease-in-out;
+  animation-delay: 0.3s;
+}
+
+.recipe-meta .meta-item svg {
+  margin-right: 12px;
+  color: #1abc9c;
+}
+
+/* Recipe Details */
+.recipe-details {
+  margin-top: 25px;
+}
+
+.recipe-details h3 {
+  color: #34495e;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-top: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Ingredients and Instructions */
+.suggestion-list {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.ingredient-input-field {
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.add-button {
+  margin-left: 10px;
+  padding: 8px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+/* Notes Section */
+.recipe-notes {
+  margin: 20px 0;
+  padding: 12px;
+  background: #fffee7;
+  border-left: 4px solid #8f8b00;
+  border-radius: 8px;
+  font-style: italic;
+  color: #555;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 1em;  /* Size adjustment for the icons */
+  color: #3498db; /* Default icon color */
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: #2ecc71; /* Hover color for the icons */
+}
+
+/* Placeholder */
+.placeholder {
+  color: #aaa;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 25px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .recipe-output {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .recipe-title {
+    font-size: 2rem;
+  }
+
+  .recipe-details h3 {
+    font-size: 1.4rem;
+  }
+
+  .ingredient-item,
+  .instruction-item {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}

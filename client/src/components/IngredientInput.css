@@ -1,0 +1,61 @@
+/* Add styles for the input and suggestions */
+.ingredient-input .input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .ingredient-input .ingredient-input-field {
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    flex: 1;
+  }
+  
+  .ingredient-input .add-button {
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .ingredient-input .add-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .suggestion-dropdown {
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 10;
+  }
+  
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  
+  .remove-button {
+    margin-left: 10px;
+    cursor: pointer;
+    color: red;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+  }
+  
