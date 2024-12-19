@@ -80,3 +80,28 @@
   color: #bdc3c7;
   text-align: center;
 }
+
+
+.audio-player {
+  position: fixed; /* Fix the position relative to the viewport */
+  top: 20px; /* Adjust the distance from the top */
+  left: 20px; /* Adjust the distance from the left */
+  z-index: 1000; /* Make sure it stays on top of other elements */
+}
+
+.play-pause-btn {
+  background-color: #000000;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.play-pause-btn:hover {
+  background-color: #ddd; /* Change the background on hover */
+}

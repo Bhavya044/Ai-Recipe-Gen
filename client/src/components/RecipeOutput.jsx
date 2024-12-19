@@ -1,9 +1,19 @@
-import React from "react";
-import { FaClock, FaUtensils, FaInfoCircle, FaThumbsUp } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaClock, FaUtensils, FaInfoCircle, FaThumbsUp, FaPlay, FaPause, FaStop } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
 import "./RecipeOutput.css";
 
 const RecipeOutput = ({ recipe }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Cleanup effect to cancel any ongoing speech
+  useEffect(() => {
+    return () => {
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+    };
+  }, []);
+
   if (!recipe) {
     return (
       <div className="recipe-output modern-card">
@@ -15,9 +25,48 @@ const RecipeOutput = ({ recipe }) => {
 
   const { title, ingredients, instructions, notes, prepTime, cookTime, totalTime, servings, difficulty, dietaryInfo } = recipe;
 
+  const togglePlay = () => {
+    if (isPlaying) {
+      window.speechSynthesis.cancel(); // Stop the current speech
+      setIsPlaying(false);
+    } else {
+      startReading();
+      setIsPlaying(true);
+    }
+  };
+
+  const startReading = () => {
+    const speech = new SpeechSynthesisUtterance();
+
+    // Combine title, ingredients, and instructions for speech
+    const textToRead = `
+      Recipe for ${title}. Ingredients: ${ingredients.join(", ")}. Instructions: ${instructions.join(", ")}. 
+      ${notes ? `Notes: ${notes}` : ""}
+    `;
+
+    speech.text = textToRead;
+    speech.lang = "en-US";
+
+    // Start reading
+    window.speechSynthesis.speak(speech);
+
+    // Automatically stop playing after speech finishes
+    speech.onend = () => {
+      setIsPlaying(false);
+    };
+  };
+
   return (
     <div className="recipe-output modern-card">
+      
+      <div className="audio-player">
+  <button onClick={togglePlay} className="play-pause-btn">
+    {isPlaying ? <FaStop /> : <FaPlay />}
+  </button>
+</div>
+
       <div className="recipe-header">
+        
         <h2 className="recipe-title">{title}</h2>
       </div>
 
@@ -84,6 +133,7 @@ const RecipeOutput = ({ recipe }) => {
           </div>
         )}
       </div>
+
     </div>
   );
 };
