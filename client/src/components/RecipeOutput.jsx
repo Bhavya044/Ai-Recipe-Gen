@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaClock, FaUtensils, FaInfoCircle, FaThumbsUp, FaPlay, FaPause, FaStop } from "react-icons/fa";
+import { FaClock, FaUtensils, FaInfoCircle, FaThumbsUp, FaPlay, FaStop } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
 import "./RecipeOutput.css";
 

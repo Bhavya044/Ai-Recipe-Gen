@@ -15,7 +15,7 @@ const IngredientInput = ({ ingredients, setIngredients, handleGenerate }) => {
     if (value.trim()) {
       setLoading(true); // Start loading when typing
       try {
-        const response = await axios.post('http://localhost:5000/api/recipes/suggestions', {
+        const response = await axios.post('https://ai-recipe-gen-seven.vercel.app/api/recipes/suggestions', {
           value
         });
         setSuggestions(response.data?.ingredients);
