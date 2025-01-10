@@ -19,7 +19,7 @@ const HomePage = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post('https://ai-recipe-gen-seven.vercel.app/api/recipes/generate', {
+      const response = await axios.post('https://ai-recipe-gen-iota.vercel.app/api/recipes/generate', {
         ingredients,
       });
       setRecipe(response.data.recipe);
