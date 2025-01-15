@@ -57,6 +57,7 @@ exports.getIngredientSuggestions=(async (text)=>{
     const ingredients = JSON.parse(jsonString);
     return ingredients
   } catch (error) {
+    console.log("ERROR",error)
     throw new Error('Failed to generate recipe using OpenAI API');
   }
 })
