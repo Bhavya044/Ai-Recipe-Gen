@@ -36,35 +36,33 @@ exports.generateRecipe = async (ingredients) => {
     throw new Error('Failed to generate recipe using OpenAI API');
   }
 };
-
-exports.getIngredientSuggestions=(async (text)=>{
+exports.getIngredientSuggestions = async (text) => {
   try {
     const prompt = `
       Provide a list of ingredients related to the query: "${text}". 
-      Format the response as a JSON array of ingredient names.
+      Ensure the response is a valid JSON array. Do not include any explanation or comments.
     `;
 
     const response = await model.generateContent(prompt);
-    const responseText = response.response.text(); // Get the generated text
+    const responseText = response.response.text();
 
-    const startIndex = responseText.indexOf('[');
-    const endIndex = responseText.lastIndexOf(']');
-    if (startIndex === -1 || endIndex === -1) {
-      throw new Error('Invalid JSON response from API');
-    }
     console.log("Raw API response:", responseText);
-  
-    const jsonMatch = responseText.match(/\[.*?\]/);
+
+    // Remove any enclosing backticks or unwanted characters
+    const cleanedResponse = responseText.replace(/```json|```/g, '').trim();
+
+    // Extract the JSON array using regex
+    const jsonMatch = cleanedResponse.match(/\[.*?\]/);
     if (!jsonMatch) {
       throw new Error('Invalid JSON response from API');
     }
-  
-    const jsonString = jsonMatch[0]; // The first match is the JSON array
+
+    const jsonString = jsonMatch[0];
     const ingredients = JSON.parse(jsonString);
 
-    return ingredients
+    return ingredients;
   } catch (error) {
-    console.log("ERROR",error)
-    throw new Error('Failed to generate recipe using OpenAI API');
+    console.error("Error parsing ingredients:", error.message);
+    throw new Error('Failed to generate ingredient suggestions');
   }
-})
+};
