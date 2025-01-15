@@ -52,9 +52,16 @@ exports.getIngredientSuggestions=(async (text)=>{
     if (startIndex === -1 || endIndex === -1) {
       throw new Error('Invalid JSON response from API');
     }
-    const jsonString = responseText.substring(startIndex, endIndex + 1);
-
+    console.log("Raw API response:", responseText);
+  
+    const jsonMatch = responseText.match(/\[.*?\]/);
+    if (!jsonMatch) {
+      throw new Error('Invalid JSON response from API');
+    }
+  
+    const jsonString = jsonMatch[0]; // The first match is the JSON array
     const ingredients = JSON.parse(jsonString);
+
     return ingredients
   } catch (error) {
     console.log("ERROR",error)
