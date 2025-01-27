@@ -1,6 +1,4 @@
-Here’s a sample README for your **AI Recipe Generator** app:
 
----
 
 # AI Recipe Generator
 
