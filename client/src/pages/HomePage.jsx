@@ -36,29 +36,26 @@ const HomePage = () => {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="home-page">
-        <main className="main-content">
-          <header className="header">
-            <h1 className="app-title">CookMate AI</h1>
-            <p className="subtitle">Your AI-powered recipe assistant</p>
-          </header>
-          <IngredientInput
-            ingredients={ingredients}
-            setIngredients={setIngredients}
-            handleGenerate={handleGenerate}
-          />
-          {loading && (
-            <div className="loader-overlay">
-              <div className="loader"></div>
-            </div>
-          )}
-          {recipe && <RecipeOutput recipe={recipe} />}
-        </main>
-        <ToastContainer />
-      </div>
-    </>
+    <div className="home-page">
+      <main className="main-content">
+        <header className="header">
+          <h1 className="app-title">CookMate AI</h1>
+          <p className="subtitle">Your AI-powered recipe assistant</p>
+        </header>
+        <IngredientInput
+          ingredients={ingredients}
+          setIngredients={setIngredients}
+          handleGenerate={handleGenerate}
+        />
+        {loading && (
+          <div className="loader-overlay">
+            <div className="loader"></div>
+          </div>
+        )}
+        {recipe && <RecipeOutput recipe={recipe} />}
+      </main>
+      <ToastContainer />
+    </div>
   );
 };
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import AuthForm from "./Authentication/AuthForm";
+import AuthModal from "./Authentication/AuthModal";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -25,13 +27,16 @@ const Navbar = () => {
 
         {/* Authentication Button */}
         {isAuthenticated ? (
-          <button
-            className="signup-button"
-            style={{ background: "black" }}
-            onClick={handleLogout}
-          >
-            Sign Out
-          </button>
+          <div>
+            <Link to="/saved-recipes">Saved Recipes</Link>
+            <button
+              className="signup-button"
+              style={{ background: "black" }}
+              onClick={handleLogout}
+            >
+              Sign Out
+            </button>
+          </div>
         ) : (
           <button className="signup-button" onClick={() => setShowModal(true)}>
             Sign In
@@ -39,25 +44,12 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* Modal for Sign In/Sign Up */}
-      {showModal && !isAuthenticated && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="close-button"
-              onClick={() => setShowModal(false)}
-            >
-              ×
-            </button>
-            <AuthForm
-              onClose={() => {
-                setShowModal(false);
-                setIsAuthenticated(true); // Update login state after signing in
-              }}
-            />
-          </div>
-        </div>
-      )}
+      <AuthModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        setIsAuthenticated={setIsAuthenticated}
+        isAuthenticated={isAuthenticated}
+      />
     </>
   );
 };
