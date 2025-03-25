@@ -1,31 +1,104 @@
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { signin, signup } from "../../services/authService";
 import "./AuthForm.css";
 
-const AuthForm = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
+const AuthForm = ({ onClose }) => {
+  const [isSignup, setIsSignup] = useState(true);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null);
 
-  const toggleForm = () => {
-    setIsSignUp(!isSignUp);
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+
+    try {
+      if (isSignup) {
+        await signup(formData.name, formData.email, formData.password);
+        toast.success("🦄 Sign up successful!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        await signin(formData.email, formData.password);
+        toast.success("🦄 Sign in successful!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+      onClose(); // Close modal on success
+    } catch (err) {
+      setError(err.message);
+      toast.error("Error: " + err.message);
+    }
   };
 
   return (
     <div className="auth-container">
-      <h2 className="auth-title">
-        {isSignUp ? "Create Account" : "Welcome Back!"}
-      </h2>
+      <ToastContainer />
+      <h2 className="auth-title">{isSignup ? "Sign Up" : "Sign In"}</h2>
       <p className="auth-subtitle">
-        {isSignUp ? "Sign up to get started" : "Sign in to continue"}
+        {isSignup
+          ? "Create a new account"
+          : "Welcome back! Sign in to continue"}
       </p>
 
-      <form className="auth-form">
-        {isSignUp && <input type="text" placeholder="Full Name" required />}
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">{isSignUp ? "Sign Up" : "Sign In"}</button>
+      {error && <p className="error">{error}</p>}
+
+      <form className="auth-form" onSubmit={handleSubmit}>
+        {isSignup && (
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        )}
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+
+        <button type="submit">{isSignup ? "Sign Up" : "Sign In"}</button>
       </form>
 
-      <p onClick={toggleForm} className="toggle-text">
-        {isSignUp
+      <p onClick={() => setIsSignup(!isSignup)} className="toggle-auth">
+        {isSignup
           ? "Already have an account? Sign In"
           : "Don't have an account? Sign Up"}
       </p>
