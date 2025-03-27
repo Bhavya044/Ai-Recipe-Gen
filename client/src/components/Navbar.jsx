@@ -8,42 +8,35 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Check authentication status from localStorage (or API)
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsAuthenticated(!!token);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Clear authentication
+    localStorage.removeItem("token");
     setIsAuthenticated(false);
   };
 
   return (
     <>
-      <nav className="navbar transparent-blur">
-        {/* Logo */}
+      <nav className="navbar dark-purple-theme">
         <h1 className="logo">CookMate AI</h1>
-
-        {/* Authentication Button */}
         {isAuthenticated ? (
-          <div>
-            <Link to="/saved-recipes">Saved Recipes</Link>
-            <button
-              className="signup-button"
-              style={{ background: "black" }}
-              onClick={handleLogout}
-            >
+          <div className="nav-links">
+            <Link to="/saved-recipes" className="nav-link">
+              Saved Recipes
+            </Link>
+            <button className="auth-button" onClick={handleLogout}>
               Sign Out
             </button>
           </div>
         ) : (
-          <button className="signup-button" onClick={() => setShowModal(true)}>
+          <button className="auth-button" onClick={() => setShowModal(true)}>
             Sign In
           </button>
         )}
       </nav>
-
       <AuthModal
         showModal={showModal}
         setShowModal={setShowModal}

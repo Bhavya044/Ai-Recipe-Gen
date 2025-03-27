@@ -43,16 +43,16 @@ const RecipeOutput = ({ recipe }) => {
   };
   return (
     <>
-      <div className="top-actions">
+      <div className="top-actions dark-theme">
         <button
           onClick={() => toggleSpeech(isPlaying, recipe, setIsPlaying)}
-          className="play-pause-btn"
+          className="play-pause-btn dark-btn"
         >
           {isPlaying ? <FaStop /> : <FaPlay />}
         </button>
         <button
           onClick={handleSaveRecipe}
-          className={`save-recipe-btn ${saved ? "saved" : ""}`}
+          className={`save-recipe-btn dark-btn ${saved ? "saved" : ""}`}
         >
           <FaBookmark />
         </button>

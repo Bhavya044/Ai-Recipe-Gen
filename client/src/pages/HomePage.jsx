@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import CSS for toast notifications
+import "react-toastify/dist/ReactToastify.css";
 import IngredientInput from "../components/IngredientInput";
 import RecipeOutput from "../components/RecipeOutput";
-import "./HomePage.css"; // Importing CSS for additional styles
+import "./HomePage.css";
 import Navbar from "../components/Navbar";
 
 const HomePage = () => {
@@ -37,23 +37,36 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <main className="main-content">
-        <header className="header">
-          <h1 className="app-title">CookMate AI</h1>
-          <p className="subtitle">Your AI-powered recipe assistant</p>
-        </header>
-        <IngredientInput
-          ingredients={ingredients}
-          setIngredients={setIngredients}
-          handleGenerate={handleGenerate}
-        />
+      <header className="header">
+        <h1 className="app-title">CookMate AI</h1>
+        <p className="subtitle">Your AI-powered recipe assistant</p>
+      </header>
+
+      <div className="main-content">
+        {/* Ingredients Section */}
+        <div className="ingredient-section">
+          <IngredientInput
+            ingredients={ingredients}
+            setIngredients={setIngredients}
+            handleGenerate={handleGenerate}
+          />
+        </div>
+
+        {/* Recipe Section */}
+
         {loading && (
           <div className="loader-overlay">
             <div className="loader"></div>
           </div>
         )}
-        {recipe && <RecipeOutput recipe={recipe} />}
-      </main>
+        {recipe && (
+          <div className="recipe-section">
+            {" "}
+            <RecipeOutput recipe={recipe} />{" "}
+          </div>
+        )}
+      </div>
+
       <ToastContainer />
     </div>
   );

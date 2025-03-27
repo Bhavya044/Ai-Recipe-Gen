@@ -1,32 +1,48 @@
-.navbar {
+.navbar.dark-purple-theme {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  margin-top: -30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid #6a0dad;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: #a259ff;
 }
 
-.signup-button {
-  padding: 8px 16px;
-  background-color: #ff6b6b;
-  color: white;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-link {
+  color: #d4a5ff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #b57edc;
+}
+
+.auth-button {
+  background: #6a0dad;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  padding: 10px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s;
 }
 
-.signup-button:hover {
-  background-color: #ff3b3b;
+.auth-button:hover {
+  background: #a259ff;
+  transform: scale(1.05);
 }

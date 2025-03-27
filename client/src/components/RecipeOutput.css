@@ -2,11 +2,11 @@
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
-  background: linear-gradient(135deg, #ffffff, #f7f7f7);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #1a0028, #2e0146);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   border-radius: 15px;
-  font-family: 'Arial', sans-serif;
-  color: #333;
+  font-family: "Poppins", sans-serif;
+  color: #f3e8ff;
 }
 
 .recipe-header {
@@ -15,9 +15,10 @@
 }
 
 .recipe-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: #e2b3ff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .recipe-meta {
@@ -28,15 +29,17 @@
 }
 
 .meta-item {
-  background: #e9f5f9;
+  background: #3f1c5c;
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #f3e8ff;
+  font-weight: 500;
 }
 
 .meta-item .icon {
-  color: #3498db;
+  color: #d18aff;
   margin-right: 0.5rem;
 }
 
@@ -45,63 +48,73 @@
 }
 
 .section h3 {
-  font-size: 1.5rem;
-  color: #2c3e50;
+  font-size: 1.6rem;
+  color: #d18aff;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #3498db;
+  border-bottom: 2px solid #e2b3ff;
   display: inline-block;
+  padding-bottom: 5px;
 }
 
-.ingredients-list,
+ingredients-list,
 .instructions-list {
   list-style-type: none;
   padding: 0;
 }
 
-.ingredient-item,
+ingredient-item,
 .instruction-item {
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
-  padding: 0.75rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: #4a1f66;
+  border: 1px solid #6b2e8a;
+  border-radius: 8px;
+  margin-bottom: 0.6rem;
+  padding: 0.8rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  color: #f3e8ff;
 }
 
 .recipe-notes {
-  background: #fef9e7;
-  padding: 1rem;
-  border-radius: 10px;
-  border-left: 5px solid #f1c40f;
+  background: #5a2d72;
+  padding: 1.2rem;
+  border-radius: 12px;
+  border-left: 5px solid #d18aff;
+  color: #f3e8ff;
+  font-style: italic;
 }
 
 .placeholder {
   font-style: italic;
-  color: #bdc3c7;
+  color: #bb86fc;
   text-align: center;
 }
 
-
 .audio-player {
-  position: fixed; /* Fix the position relative to the viewport */
-  top: 20px; /* Adjust the distance from the top */
-  left: 20px; /* Adjust the distance from the left */
-  z-index: 1000; /* Make sure it stays on top of other elements */
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+.top-actions {
+  display: flex;
 }
 
 .play-pause-btn {
-  background-color: #000000;
+  background-color: #6b2e8a;
   border: none;
-  padding: 10px;
+  padding: 12px;
   border-radius: 50%;
-  font-size: 22px;
+  font-size: 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  color: #f3e8ff;
+  transition: all 0.3s ease;
 }
 
 .play-pause-btn:hover {
-  background-color: #ddd; /* Change the background on hover */
+  background-color: #d18aff;
+  color: #2e0146;
+  transform: scale(1.1);
 }

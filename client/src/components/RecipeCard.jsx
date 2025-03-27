@@ -9,10 +9,11 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
+import "./RecipeOutput.css";
 
 const RecipeCard = ({ recipe }) => {
   return (
-    <div className="recipe-card modern-card">
+    <div className="recipe-card dark-theme-card">
       <div className="recipe-header">
         <h2 className="recipe-title">{recipe.title}</h2>
       </div>
