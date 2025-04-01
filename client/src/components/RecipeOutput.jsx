@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  FaClock,
-  FaUtensils,
-  FaInfoCircle,
-  FaThumbsUp,
-  FaPlay,
-  FaStop,
-  FaBookmark,
-} from "react-icons/fa";
-import { GiHotMeal } from "react-icons/gi";
+import { FaPlay, FaStop, FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   checkIfRecipeIsSaved,
   saveRecipe,
   toggleSpeech,
+  unsaveRecipe,
 } from "../services/recipeService";
 import "./RecipeOutput.css";
 import AuthModal from "./Authentication/AuthModal";
@@ -32,32 +24,48 @@ const RecipeOutput = ({ recipe }) => {
     setSaved(checkIfRecipeIsSaved(recipe));
   }, [recipe]);
 
-  const handleSaveRecipe = () => {
+  const handleSaveRecipe = async () => {
     if (!isAuthenticated) {
       setShowSignInModal(true);
       return;
     }
-    const result = saveRecipe(recipe, setShowSignInModal);
-    if (result.success) setSaved(true);
-    toast[result.success ? "success" : "info"](result.message);
+
+    if (saved) {
+      // If already saved, UNSAVE it
+      const result = await unsaveRecipe(recipe);
+      if (result.success) setSaved(false);
+      toast[result.success ? "info" : "error"](result.message);
+    } else {
+      // Otherwise, SAVE it
+      const result = await saveRecipe(recipe, setShowSignInModal);
+      if (result.success) setSaved(true);
+      toast[result.success ? "success" : "error"](result.message);
+    }
   };
+
   return (
     <>
-      <div className="top-actions dark-theme">
-        <button
-          onClick={() => toggleSpeech(isPlaying, recipe, setIsPlaying)}
-          className="play-pause-btn dark-btn"
-        >
-          {isPlaying ? <FaStop /> : <FaPlay />}
-        </button>
-        <button
-          onClick={handleSaveRecipe}
-          className={`save-recipe-btn dark-btn ${saved ? "saved" : ""}`}
-        >
-          <FaBookmark />
-        </button>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className="top-actions dark-theme">
+          <button
+            onClick={() => toggleSpeech(isPlaying, recipe, setIsPlaying)}
+            className="play-pause-btn dark-btn"
+          >
+            {isPlaying ? <FaStop /> : <FaPlay />}
+          </button>
+          <button
+            onClick={handleSaveRecipe}
+            className={`save-recipe-btn dark-btn ${saved ? "saved" : ""}`}
+          >
+            {saved ? (
+              <FaBookmark style={{ color: "#facc15" }} />
+            ) : (
+              <FaRegBookmark />
+            )}
+          </button>
+        </div>
+        <RecipeCard recipe={recipe} />
       </div>
-      <RecipeCard recipe={recipe} />
 
       <AuthModal
         showModal={showSignInModal}

@@ -35,9 +35,11 @@
   background: #6a0dad;
   color: #fff;
   border: none;
-  padding: 10px 15px;
+  height: max-content;
+  padding: 6px 20px;
   border-radius: 5px;
   cursor: pointer;
+  width: max-content;
   font-weight: bold;
   transition: background 0.3s ease, transform 0.2s;
 }

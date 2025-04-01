@@ -43,3 +43,7 @@
   font-weight: bold;
   transition: background 0.3;
 }
+
+.toggle-auth {
+  color: purple;
+}

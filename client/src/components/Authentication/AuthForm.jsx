@@ -12,6 +12,7 @@ const AuthForm = ({ onClose }) => {
     password: "",
   });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); // NEW LOADING STATE
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,37 +21,22 @@ const AuthForm = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+    setLoading(true); // Start loading
 
     try {
       if (isSignup) {
         await signup(formData.name, formData.email, formData.password);
-        toast.success("🦄 Sign up successful!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        toast.success("🦄 Sign up successful!");
       } else {
         await signin(formData.email, formData.password);
-        toast.success("🦄 Sign in successful!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        toast.success("🦄 Sign in successful!");
       }
       onClose(); // Close modal on success
     } catch (err) {
       setError(err.message);
       toast.error("Error: " + err.message);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -94,7 +80,15 @@ const AuthForm = ({ onClose }) => {
           required
         />
 
-        <button type="submit">{isSignup ? "Sign Up" : "Sign In"}</button>
+        <button type="submit" disabled={loading}>
+          {loading
+            ? isSignup
+              ? "Signing Up..."
+              : "Signing In..."
+            : isSignup
+            ? "Sign Up"
+            : "Sign In"}
+        </button>
       </form>
 
       <p onClick={() => setIsSignup(!isSignup)} className="toggle-auth">

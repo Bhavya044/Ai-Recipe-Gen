@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     setIsAuthenticated(!!token);
-  }, []);
+  }, [token]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");

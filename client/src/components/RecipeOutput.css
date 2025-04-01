@@ -96,6 +96,7 @@ ingredient-item,
 }
 .top-actions {
   display: flex;
+  justify-content: space-between;
 }
 
 .play-pause-btn {

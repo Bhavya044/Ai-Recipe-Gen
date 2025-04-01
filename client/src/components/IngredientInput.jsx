@@ -100,9 +100,7 @@ const IngredientInput = ({ ingredients, setIngredients, handleGenerate }) => {
           </div>
         ))}
       </div>
-      <button onClick={handleGenerate} className="generate-button">
-        Generate Recipe
-      </button>
+      <button onClick={handleGenerate}>Generate Recipe</button>
     </div>
   );
 };
