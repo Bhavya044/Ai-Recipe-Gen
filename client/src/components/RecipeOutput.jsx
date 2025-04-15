@@ -33,8 +33,8 @@ const RecipeOutput = ({ recipe }) => {
     if (saved) {
       // If already saved, UNSAVE it
       // const result = await unsaveRecipe(recipe);
-      if (result.success) setSaved(false);
-      toast[result.success ? "info" : "error"](result.message);
+      // if (result.success) setSaved(false);
+      // toast[result.success ? "info" : "error"](result.message);
     } else {
       // Otherwise, SAVE it
       const result = await saveRecipe(recipe, setShowSignInModal);
