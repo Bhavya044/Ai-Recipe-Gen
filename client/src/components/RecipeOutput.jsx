@@ -6,7 +6,7 @@ import {
   checkIfRecipeIsSaved,
   saveRecipe,
   toggleSpeech,
-  unsaveRecipe,
+  // unsaveRecipe,
 } from "../services/recipeService";
 import "./RecipeOutput.css";
 import AuthModal from "./Authentication/AuthModal";
@@ -32,7 +32,7 @@ const RecipeOutput = ({ recipe }) => {
 
     if (saved) {
       // If already saved, UNSAVE it
-      const result = await unsaveRecipe(recipe);
+      // const result = await unsaveRecipe(recipe);
       if (result.success) setSaved(false);
       toast[result.success ? "info" : "error"](result.message);
     } else {
