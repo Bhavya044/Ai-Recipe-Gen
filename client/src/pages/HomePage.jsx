@@ -37,11 +37,6 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <header className="header">
-        <h1 className="app-title">CookMate AI</h1>
-        <p className="subtitle">Your AI-powered recipe assistant</p>
-      </header>
-
       <div className="main-content">
         {/* Ingredients Section */}
         <div className="ingredient-section">

@@ -21,7 +21,10 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar dark-purple-theme">
-        <h1 className="logo">CookMate AI</h1>
+        <div className="header-title">
+          <span className="logo">CookMate AI</span>
+          <span className="subtitle">Your AI-powered recipe assistant</span>
+        </div>
         {isAuthenticated ? (
           <div className="nav-links">
             <Link to="/saved-recipes" className="nav-link">

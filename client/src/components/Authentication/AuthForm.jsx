@@ -61,6 +61,7 @@ const AuthForm = ({ onClose }) => {
             value={formData.name}
             onChange={handleChange}
             required
+            className="ingredient-input-field"
           />
         )}
         <input
@@ -70,6 +71,7 @@ const AuthForm = ({ onClose }) => {
           value={formData.email}
           onChange={handleChange}
           required
+          className="ingredient-input-field"
         />
         <input
           type="password"
@@ -78,9 +80,10 @@ const AuthForm = ({ onClose }) => {
           value={formData.password}
           onChange={handleChange}
           required
+          className="ingredient-input-field"
         />
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="generate-button" disabled={loading}>
           {loading
             ? isSignup
               ? "Signing Up..."

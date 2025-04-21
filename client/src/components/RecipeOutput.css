@@ -1,8 +1,8 @@
 .recipe-output {
   max-width: 800px;
   margin: 2rem auto;
+  background: black;
   padding: 2rem;
-  background: linear-gradient(135deg, #1a0028, #2e0146);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   border-radius: 15px;
   font-family: "Poppins", sans-serif;
@@ -51,9 +51,75 @@
   font-size: 1.6rem;
   color: #d18aff;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #e2b3ff;
   display: inline-block;
-  padding-bottom: 5px;
+}
+/* From Uiverse.io by boryanakrasteva */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  position: relative;
+}
+
+.btn .saved::after {
+  content: "Save recipe";
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  font-size: 15px;
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s linear;
+  top: 115%;
+}
+.btn .unsaved::after {
+  content: "Unsave recipe";
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  font-size: 15px;
+  background: #2e0146;
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s linear;
+  top: 115%;
+}
+
+.btn-icon {
+  width: 60px;
+  height: 60px;
+  transition: 0.2s linear;
+}
+
+.btn-icon path {
+  fill: white;
+  transition: 0.2s linear;
+}
+
+.btn:hover > .btn-icon {
+  transform: scale(1.2);
+}
+
+.btn:hover > .btn-icon path {
+  fill: rgb(177, 139, 189);
+}
+
+.btn:hover::after {
+  visibility: visible;
+  opacity: 1;
+  top: 105%;
 }
 
 ingredients-list,
@@ -64,7 +130,7 @@ ingredients-list,
 
 ingredient-item,
 .instruction-item {
-  background: #4a1f66;
+  background: #1c1a1c;
   border: 1px solid #6b2e8a;
   border-radius: 8px;
   margin-bottom: 0.6rem;

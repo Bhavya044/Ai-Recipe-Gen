@@ -1,25 +1,29 @@
+/* Modal overlay with dark background */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7); /* Darker background */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
 }
 
+/* Modal content with a purple background and a blurred effect */
 .modal-content {
-  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
-  padding: 2px;
+  background: #1e1b2e;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(118, 33, 183, 0.2);
   position: relative;
+  color: #fff; /* White text color for better contrast */
 }
 
+/* Close button with purple accent */
 .close-button {
   position: absolute;
   top: 0;
@@ -28,6 +32,10 @@
   background: none;
   font-size: 20px;
   cursor: pointer;
-  color: black;
+  color: #6a0dad; /* Purple color */
   z-index: 999;
+}
+
+.close-button:hover {
+  color: #a259ff; /* Lighter purple on hover */
 }

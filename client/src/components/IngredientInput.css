@@ -1,86 +1,166 @@
-body {
-  background-color: #1e1b2e;
-  color: #e0e0e0;
-  font-family: "Poppins", sans-serif;
-  margin: 0;
-  padding: 0;
+/* Reusable button base */
+:root {
+  --primary: #7c3aed; /* Vivid Purple */
+  --primary-dark: #5b21b6; /* Deeper Purple */
+  --accent: #a78bfa; /* Lavender Accent */
+  --bg-dark: #1e1b2e; /* Dark Background */
+  --bg-lighter: #2a2640;
+  --text-light: #f3f4f6;
+  --text-muted: #d1d5db;
+  --border: #4b445d;
+}
+.ingredient-input {
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 640px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 25px rgba(124, 58, 237, 0.1);
+  font-family: "Inter", sans-serif;
+  color: var(--text-light);
 }
 
-.ingredient-input {
-  background: #2a1f4f;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.suggestions-list {
+  list-style: none;
+  border-radius: 12px;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: var(--bg-lighter);
+}
+
+.suggestion-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.suggestion-item:hover {
+  background-color: #3f3a56;
+}
+
+.ingredient-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 15px;
+}
+
+.ingredient-tag {
+  background: rgba(167, 139, 250, 0.15);
+  color: var(--accent);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(167, 139, 250, 0.4);
+}
+
+.remove-button {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.remove-button:hover {
+  color: #c4b5fd;
+}
+
+.ingredient-input .loader {
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--border);
+  border-top: 3px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 .input-title {
-  color: #bb86fc;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #d4a5ff;
 }
 
 .input-container {
   display: flex;
-  align-items: center;
+  gap: 0.25rem;
+  position: relative;
 }
 
 .ingredient-input-field {
-  background: #3a2c5a;
-  border: 1px solid #bb86fc;
-  color: #e0e0e0;
-  padding: 8px;
-  border-radius: 5px;
   flex: 1;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  background: var(--bg-lighter);
+  color: var(--text-light);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.add-button {
-  background-color: #bb86fc;
-  color: white;
+.ingredient-input-field::placeholder {
+  color: var(--text-muted);
+}
+
+.ingredient-input-field:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  outline: none;
+}
+.generate-button {
   border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.add-button:hover {
-  background-color: #9b68dc;
-}
-
-.suggestions-list {
-  background: #3a2c5a;
-  border: 1px solid #bb86fc;
-  color: #e0e0e0;
-  list-style: none;
-  max-height: 200px;
-  overflow-y: auto;
-  border-radius: 5px;
-}
-
-.suggestion-item {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.suggestion-item:hover {
-  background-color: #bb86fc;
-  color: white;
-}
-
-.ingredient-list {
-  margin-top: 10px;
-}
-
-.ingredient-tag {
+  width: 10em;
+  height: 2.5em;
+  border-radius: 3em;
   display: flex;
+  justify-content: center;
   align-items: center;
-  background: #3a2c5a;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin: 5px 0;
+  gap: 12px;
+  background: #1c1a1c;
+  cursor: pointer;
+  transition: all 450ms ease-in-out;
 }
 
-.remove-button {
-  background: none;
-  border: none;
-  color: red;
-  font-size: 1.2rem;
-  cursor: pointer;
+.sparkle {
+  fill: #aaaaaa;
+  transition: all 800ms ease;
+}
+
+.text {
+  font-weight: 600;
+  color: #aaaaaa;
+  font-size: medium;
+}
+
+.generate-button:hover {
+  background: linear-gradient(0deg, #a47cf3, #683fea);
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+    0px 0px 0px 4px rgba(255, 255, 255, 0.2), 0px 0px 180px 0px #9917ff;
+  transform: translateY(-2px);
+}
+
+.generate-button:hover .text {
+  color: white;
+}
+
+.generate-button:hover .sparkle {
+  fill: white;
+  transform: scale(1.2);
 }

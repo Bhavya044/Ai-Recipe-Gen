@@ -1,19 +1,11 @@
 import React from "react";
-import {
-  FaClock,
-  FaPlay,
-  FaStop,
-  FaBookmark,
-  FaUtensils,
-  FaThumbsUp,
-  FaInfoCircle,
-} from "react-icons/fa";
+import { FaClock, FaUtensils, FaThumbsUp, FaInfoCircle } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
 import "./RecipeOutput.css";
 
 const RecipeCard = ({ recipe }) => {
   return (
-    <div className="recipe-card dark-theme-card">
+    <div className="recipe-card">
       <div className="recipe-header">
         <h2 className="recipe-title">{recipe.title}</h2>
       </div>
